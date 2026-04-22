@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pexels App</string>
+    <string name="back">Назад</string>
+    <string name="download_photo">Загрузить фото</string>
+    <string name="download_btn">Загрузить</string>
+    <string name="add_to_favorite">Добавить в избраное</string>
+    <string name="logo_pexels">Логотоп</string>
+    <string name="no_results_found">Результаты не найдены</string>
+    <string name="explore_btn">Поискать</string>
+    <string name="no_internet_connection">Нет интернет соединения</string>
+    <string name="title_bookmarks">Избранное</string>
+    <string name="empty_state_description">Вы пока ничего не сохранили</string>
+    <string name="search_placeholder">Поиск</string>
+    <string name="clear_btn">Очистить</string>
+    <string name="back_btn">Назад</string>
+    <string name="placeholder_details">Плейсхолдер</string>
+    <string name="ok_download_btn">Ок</string>
+    <string name="add_to_bookmarks">Добавить в избранное</string>
+    <string name="not_found_stub">Изображение не найдено</string>
+    <string name="explore_not_found_btn">Поискать</string>
+    <string name="try_again_btn">Еще Раз</string>
+</resources>

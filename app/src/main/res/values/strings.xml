@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Pexels App</string>
+    <string name="back">Back</string>
+    <string name="download_photo">Download photo</string>
+    <string name="download_btn">Download</string>
+    <string name="add_to_favorite">Add to favorite</string>
+    <string name="logo_pexels">Logo Pexels</string>
+    <string name="no_results_found">No results found</string>
+    <string name="explore_btn">Explore</string>
+    <string name="no_internet_connection">No internet connection</string>
+    <string name="title_bookmarks">Bookmarks</string>
+    <string name="empty_state_description">You haven\'t saved anything yet</string>
+    <string name="search_placeholder">Search</string>
+    <string name="clear_btn">Clear</string>
+    <string name="back_btn">Back</string>
+    <string name="placeholder_details">Placeholder</string>
+    <string name="ok_download_btn">Ok</string>
+    <string name="add_to_bookmarks">Add to Bookmark</string>
+    <string name="not_found_stub">Image not found</string>
+    <string name="explore_not_found_btn">Explore</string>
+    <string name="try_again_btn">Try Again</string>
+</resources>
