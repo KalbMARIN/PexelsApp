@@ -1,5 +1,7 @@
 package com.practicum.pexelsapp.presentation.components.details
 
+import androidx.compose.animation.Crossfade
+import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
@@ -20,6 +22,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -40,6 +44,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.times
 import coil3.compose.AsyncImage
 import com.practicum.pexelsapp.R
 import kotlinx.coroutines.delay
@@ -80,7 +85,7 @@ private fun BackButton(onClick: () -> Unit) {
                 color = MaterialTheme.colorScheme.surface,
                 shape = RoundedCornerShape(12.dp)
             )
-            .clip(RoundedCornerShape(12.dp)) // Чтобы Ripple не вылезал
+            .clip(RoundedCornerShape(12.dp))
             .clickable { onClick() },
         contentAlignment = Alignment.Center
     ) {
@@ -166,8 +171,20 @@ fun DetailsActionButtons(
 
     val iconOffset by animateDpAsState(
         targetValue = if (isDownloadComplete) 140.dp else 0.dp,
-        animationSpec = tween(durationMillis = 500),
+        animationSpec = tween(durationMillis = 500, easing = FastOutSlowInEasing),
         label = "DownloadAnim"
+    )
+
+    val textAlpha by animateFloatAsState(
+        targetValue = if (isDownloadComplete) 0f else 1f,
+        animationSpec = tween(durationMillis = 250),
+        label = "TextFade"
+    )
+
+    val okTextAlpha by animateFloatAsState(
+        targetValue = if (isDownloadComplete) 1f else 0f,
+        animationSpec = tween(durationMillis = 250, delayMillis = 200),
+        label = "OkTextFade"
     )
 
     Row(
@@ -197,14 +214,32 @@ fun DetailsActionButtons(
         ) {
 
             Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(start = 66.dp),
+                contentAlignment = Alignment.CenterStart
             ) {
                 Text(
-                    text = if (isDownloadComplete) stringResource(R.string.ok_download_btn) else stringResource(R.string.download_btn),
+                    text = if (isDownloadComplete) stringResource(R.string.ok_download_btn) else stringResource(
+                        R.string.download_btn
+                    ),
                     style = MaterialTheme.typography.labelMedium,
-                    color = MaterialTheme.colorScheme.onBackground,
-                    modifier = Modifier.padding(start = 18.dp)
+                    color = MaterialTheme.colorScheme.onBackground.copy(alpha = textAlpha),
+                    modifier = Modifier.offset(x = (1f - textAlpha) * (-20).dp)
+                )
+            }
+
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(end = 66.dp),
+                contentAlignment = Alignment.CenterEnd
+            ) {
+                Text(
+                    text = stringResource(R.string.ok_download_btn),
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.onBackground.copy(alpha = okTextAlpha),
+                    modifier = Modifier.offset(x = (1f - okTextAlpha) * 20.dp)
                 )
             }
 
@@ -218,12 +253,31 @@ fun DetailsActionButtons(
                     ),
                 contentAlignment = Alignment.Center
             ) {
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_download),
-                    contentDescription = stringResource(R.string.download_photo),
-                    tint = MaterialTheme.colorScheme.onPrimary,
-                    modifier = Modifier.size(18.dp)
-                )
+                Crossfade(
+                    targetState = isDownloadComplete,
+                    animationSpec = tween(300),
+                    label = "IconCrossfade"
+                ) { complete ->
+                    if (complete) {
+                        Icon(
+                            imageVector = Icons.Default.Check,
+                            contentDescription = "Done",
+                            tint = MaterialTheme.colorScheme.onPrimary,
+                            modifier = Modifier.size(18.dp)
+                        )
+                    } else {
+                        Icon(
+                            painter = painterResource(
+                                id = R.drawable.ic_download
+                            ),
+                            contentDescription = stringResource(R.string.download_photo),
+                            tint = MaterialTheme.colorScheme.onPrimary,
+                            modifier = Modifier.size(18.dp)
+                        )
+                    }
+
+                }
+
             }
         }
 

@@ -15,7 +15,7 @@
     <string name="clear_btn">Очистить</string>
     <string name="back_btn">Назад</string>
     <string name="placeholder_details">Плейсхолдер</string>
-    <string name="ok_download_btn">Ок</string>
+    <string name="ok_download_btn">Готово</string>
     <string name="add_to_bookmarks">Добавить в избранное</string>
     <string name="not_found_stub">Изображение не найдено</string>
     <string name="explore_not_found_btn">Поискать</string>

@@ -14,7 +14,7 @@
     <string name="clear_btn">Clear</string>
     <string name="back_btn">Back</string>
     <string name="placeholder_details">Placeholder</string>
-    <string name="ok_download_btn">Ok</string>
+    <string name="ok_download_btn">Complete</string>
     <string name="add_to_bookmarks">Add to Bookmark</string>
     <string name="not_found_stub">Image not found</string>
     <string name="explore_not_found_btn">Explore</string>

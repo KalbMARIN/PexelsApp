@@ -43,6 +43,8 @@ android {
 }
 
 dependencies {
+    implementation("androidx.compose.material:material-icons-extended")
+
     implementation(libs.androidx.core.splashscreen)
 
     implementation(libs.androidx.paging.runtime.ktx)
