@@ -16,7 +16,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -27,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.practicum.pexelsapp.R
 import com.practicum.pexelsapp.domain.entity.Photo
+import com.practicum.pexelsapp.presentation.components.common.shimmerEffect
 
 @Composable
 fun PhotoCard(
@@ -38,6 +41,8 @@ fun PhotoCard(
 
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
+
+    var isLoading by remember { mutableStateOf(true) }
 
     val elevation by animateDpAsState(
         targetValue = if (isPressed) 4.dp else 0.dp, // Приподнимаем на 12dp при нажатии
@@ -66,11 +71,23 @@ fun PhotoCard(
             AsyncImage(
                 model = photo.url,
                 contentDescription = photo.alt,
-                contentScale = ContentScale.FillWidth, // Важно для сетки
+                contentScale = ContentScale.FillWidth,
                 modifier = Modifier
                     .fillMaxWidth(),
-                placeholder = painterResource(id = R.drawable.placeholder)
+                placeholder = painterResource(id = R.drawable.placeholder),
+                error = painterResource(id = R.drawable.placeholder),
+                onSuccess = { isLoading = false },
+                onLoading = { isLoading = true },
+                onError = { isLoading = false }
             )
+
+            if (isLoading) {
+                Box(
+                    modifier = Modifier
+                        .matchParentSize()
+                        .shimmerEffect()
+                )
+            }
 
             if (showPhotographerName) {
                 PhotographerOverlay(name = photo.photographer)

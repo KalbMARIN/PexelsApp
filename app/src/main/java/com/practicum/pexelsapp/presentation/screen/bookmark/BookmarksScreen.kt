@@ -53,6 +53,7 @@ private fun BookmarksContent(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
+                .padding(bottom = 64.dp)
         ) {
 
             if (isLoading) {
