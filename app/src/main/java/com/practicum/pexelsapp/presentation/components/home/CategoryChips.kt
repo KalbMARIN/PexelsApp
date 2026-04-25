@@ -2,9 +2,10 @@ package com.practicum.pexelsapp.presentation.components.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -14,6 +15,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
@@ -70,10 +72,14 @@ private fun CategoryChipItem(
         modifier = modifier
             .height(38.dp)
             .clip(RoundedCornerShape(50.dp))
+
     ) {
         Text(
             text = category,
-            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+            modifier = Modifier.padding(horizontal = 16.dp)
+                .fillMaxHeight()
+                .wrapContentHeight(Alignment.CenterVertically)
+                .padding(bottom = 2.dp),
             color = if (isSelected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurface,
             style = if (isSelected) MaterialTheme.typography.labelLarge else MaterialTheme.typography.bodyLarge
         )
