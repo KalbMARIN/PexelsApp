@@ -2,13 +2,13 @@
 <resources>
     <style name="Theme.App.Starting" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/red_primary</item>
-        <item name="windowSplashScreenAnimatedIcon">@android:color/transparent</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_transparent</item>
         <item name="postSplashScreenTheme">@style/Theme.PexelsApp</item>
-<!--        <item name="windowSplashScreenIconBackgroundColor">@android:color/transparent</item>-->
     </style>
 
-    <style name="Theme.PexelsApp" parent="android:Theme.DeviceDefault.NoActionBar">
-        <item name="android:windowActionBar">false</item>
-        <item name="android:windowNoTitle">true</item>
+    <style name="Theme.PexelsApp" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="android:windowBackground">@color/red_primary</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
 </resources>

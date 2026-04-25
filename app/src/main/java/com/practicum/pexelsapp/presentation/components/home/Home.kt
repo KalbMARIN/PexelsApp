@@ -27,12 +27,14 @@ fun HomeTopBar(
     onQueryChange: (String) -> Unit,
     onCategoryClick: (String) -> Unit
 ) {
+
     Column(
         modifier = modifier
             .background(MaterialTheme.colorScheme.background)
             .statusBarsPadding()
             .padding(top = 7.dp)
     ) {
+        Spacer(modifier = Modifier.height(14.dp))
         SearchBar(
             query = queryText,
             onQueryChange = onQueryChange

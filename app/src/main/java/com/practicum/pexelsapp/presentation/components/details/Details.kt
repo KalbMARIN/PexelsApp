@@ -60,6 +60,7 @@ fun DetailsTopBar(
         modifier = modifier
             .fillMaxWidth()
             .statusBarsPadding()
+            .padding(top = 14.dp)
             .height(64.dp)
             .padding(horizontal = 24.dp),
         contentAlignment = Alignment.CenterStart

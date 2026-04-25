@@ -1,15 +1,13 @@
 package com.practicum.pexelsapp.presentation.screen.splash
 
 import androidx.compose.animation.core.Animatable
-import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.FastOutLinearInEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -25,17 +23,33 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun SplashScreen(
-    isDataLoaded: Boolean,
+    isReady: Boolean,
     onFinished: () -> Unit
 ) {
+
     val alphaAnim = remember { Animatable(0f) }
 
+    LaunchedEffect(Unit) {
+        alphaAnim.animateTo(
+            targetValue = 1f,
+            animationSpec = tween(
+                durationMillis = 2000,
+                easing = FastOutLinearInEasing
+            )
+        )
+    }
+
+    LaunchedEffect(isReady) {
+        if (isReady) {
+            delay(800)
+            onFinished()
+        }
+    }
 
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = MaterialTheme.colorScheme.primary)
-            .windowInsetsPadding(WindowInsets(0, 0, 0, 0)),
+            .background(color = MaterialTheme.colorScheme.primary),
         contentAlignment = Alignment.Center
     ) {
         Image(
@@ -47,23 +61,5 @@ fun SplashScreen(
                     alpha = alphaAnim.value
                 }
         )
-    }
-
-    LaunchedEffect(Unit) {
-        delay(100)
-        alphaAnim.animateTo(
-            targetValue = 1f,
-            animationSpec = tween(
-                durationMillis = 1200,
-                easing = FastOutSlowInEasing
-            )
-        )
-    }
-
-    LaunchedEffect(isDataLoaded) {
-        if (isDataLoaded) {
-            delay(1000)
-            onFinished()
-        }
     }
 }

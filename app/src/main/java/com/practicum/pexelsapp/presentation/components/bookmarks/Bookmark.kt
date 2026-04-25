@@ -29,13 +29,16 @@ import com.practicum.pexelsapp.presentation.components.home.PhotoCard
 
 @Composable
 fun BookmarksTopBar(modifier: Modifier = Modifier) {
+
     Box(
         modifier = modifier
             .fillMaxWidth()
             .statusBarsPadding()
+            .padding(top = 14.dp)
             .height(64.dp),
         contentAlignment = Alignment.Center
     ) {
+
         Text(
             text = stringResource(R.string.title_bookmarks),
             style = MaterialTheme.typography.titleLarge,

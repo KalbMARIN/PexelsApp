@@ -27,6 +27,7 @@ fun BookmarksScreen(
     val photos by viewModel.bookmarks.collectAsState()
     val isLoading by viewModel.isLoading.collectAsState()
 
+
     BookmarksContent(
         photos = photos,
         isLoading = isLoading,
@@ -42,6 +43,7 @@ private fun BookmarksContent(
     onExploreClick: () -> Unit,
     onPhotoClick: (Int) -> Unit
 ) {
+
     Scaffold(
         topBar = { BookmarksTopBar() },
         containerColor = MaterialTheme.colorScheme.background
